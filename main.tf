@@ -13,7 +13,7 @@ resource "azurerm_monitor_action_group" "monitor_action_group" {
     content {
       name                    = arm_role_receiver.value.name
       role_id                 = split("/", arm_role_receiver.value.id)[4] # https://github.com/hashicorp/terraform-provider-azurerm/issues/8553
-      use_common_alert_schema = arm_role_receiver.value.use_common_alert_schema
+      use_common_alert_schema = true
     }
   }
 
