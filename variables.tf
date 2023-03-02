@@ -18,21 +18,7 @@ variable "configuration" {
 
 variable "azurerm_resource_group" {
   description = "(Required) The Azure Resource Group resource."
-}
-
-variable "amount" {
-  description = "(Required) The total amount of cost to track with the budget."
-  type        = number
-}
-
-variable "time_grain" {
-  description = <<EOT
-(Optional) The time covered by a budget. Tracking of the amount will be reset based on the time grain.
-Must be one of `BillingAnnual`, `BillingMonth`, `BillingQuarter`, `Annually`, `Monthly` and `Quarterly`.
-Defaults to `Monthly`. Changing this forces a new resource to be created."
-EOT
-  type        = string
-  default     = "Monthly"
+  type        = any
 }
 
 variable "system_short_name" {

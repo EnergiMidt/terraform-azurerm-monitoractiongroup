@@ -3,9 +3,9 @@ locals {
 }
 
 resource "azurerm_monitor_action_group" "monitor_action_group" {
-  name                = var.name
+  name                = local.name
   resource_group_name = var.azurerm_resource_group.name
-  short_name          = var.short_name
+  short_name          = "${title(substr(var.system_short_name, 0, 2))}${title(substr(var.app_name, 0, 6))}${title(substr(var.environment, 0, 4))}"
 
   dynamic "arm_role_receiver" {
     for_each = (var.configuration.arm_role_receiver == null) ? {} : var.configuration.arm_role_receiver
