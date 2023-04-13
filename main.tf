@@ -20,10 +20,10 @@ resource "azurerm_monitor_action_group" "monitor_action_group" {
   dynamic "azure_function_receiver" {
     for_each = (var.configuration.azure_function_receiver == null) ? {} : var.configuration.azure_function_receiver
     content {
-      name                     = azure_function_receiver.value.name
-      function_app_resource_id = azure_function_receiver.value.function_app_resource_id
-      function_name            = azure_function_receiver.value.function_name
-      http_trigger_url         = azure_function_receiver.value.http_trigger_url
+      name                     = lookup(azure_function_receiver.value, "name", null)
+      function_app_resource_id = lookup(azure_function_receiver.value, "function_app_resource_id", null)
+      function_name            = lookup(azure_function_receiver.value, "function_name", null)
+      http_trigger_url         = lookup(azure_function_receiver.value, "http_trigger_url", null)
       use_common_alert_schema  = try(azure_function_receiver.value.use_common_alert_schema, true)
     }
   }
