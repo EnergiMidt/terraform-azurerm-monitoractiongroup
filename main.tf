@@ -18,7 +18,7 @@ resource "azurerm_monitor_action_group" "monitor_action_group" {
   }
 
   dynamic "azure_function_receiver" {
-    for_each = (var.configuration.azure_function_receiver == null) ? [] : toset(var.configuration.azure_function_receiver)
+    for_each = (var.configuration.azure_function_receiver == null) ? [] : var.configuration.azure_function_receiver
 
     content {
       name                     = azure_function_receiver.value.name
